@@ -63,7 +63,7 @@ EOF
 sysctl --system
 
 # Instalar paquetes necesarios utilizando tdnf
-tdnf -y install conntrack-tools dnsmasq jq kubernetes-client kubernetes-kubeadm moby-cli moby-engine
+tdnf -y install azure-cli conntrack-tools dnsmasq jq kubernetes-client kubernetes-kubeadm moby-cli moby-engine
 
 # Eliminar un archivo de configuración no necesario
 rm -rf /etc/cni/net.d/99-loopback.conf.sample
