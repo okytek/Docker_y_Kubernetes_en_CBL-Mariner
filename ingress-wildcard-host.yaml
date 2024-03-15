@@ -1,0 +1,32 @@
+# Definición de un recurso Ingress en Kubernetes
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-wildcard-host  # Nombre del recurso Ingress
+spec:
+  tls:
+  - hosts:
+      - 192.168.0.101.nip.io  # Lista de hosts para los que se aplicará TLS
+    secretName: ingress-wildcard-host  # Nombre del secreto que contiene el certificado TLS
+  rules:
+  - host: "192.168.0.101.nip.io"  # Host al que se aplica la regla de Ingress
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"  # Ruta a la que se aplica la regla
+        backend:
+          service:
+            name: ingress-wildcard-host  # Nombre del servicio backend
+            port:
+              number: 80  # Número de puerto del servicio backend
+---
+# Definición de un recurso Secret en Kubernetes para almacenar certificados TLS
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ingress-wildcard-host  # Nombre del secreto
+  namespace: default  # Espacio de nombres donde se crea el secreto
+data:
+  tls.crt: base64 encoded cert  # Certificado TLS codificado en base64
+  tls.key: base64 encoded key   # Clave privada TLS codificada en base64
+type: kubernetes.io/tls  # Tipo de secreto, indica que es un secreto TLS
