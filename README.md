@@ -12,4 +12,8 @@ kubectl delete service <nombre_del_service> -n <nombre_del_namespaces>
 kubectl delete secret <nombre_del_secret> -n <nombre_del_namespaces>
 
 kubectl delete ingress <nombre_del_ingress> -n <nombre_del_namespaces>
+
+kubectl delete namespace <nombre_del_namespaces>
+
+kubeadm token create --print-join-command
 ```
