@@ -3,11 +3,8 @@
 ![image](https://github.com/okytek/Guia_practica_de_Docker_y_Kubernetes_en_CBL-Mariner/assets/130212627/15f1623c-aceb-4545-a519-5d63a5cfad09)
 
 ```sh
-# Este comando crea una copia de seguridad del archivo de configuración actual del Kubelet, config.yaml, guardándola con el nombre config.yaml.backup. Es una práctica recomendada hacer una copia de seguridad antes de realizar cambios en archivos de configuración importantes.
-sudo cp /var/lib/kubelet/config.yaml /var/lib/kubelet/config.yaml.backup
-
 # Este comando utiliza sed, una herramienta de edición de texto en línea, para añadir una nueva línea (maxPods: 50) justo después de la línea que contiene kind: KubeletConfiguration en el archivo config.yaml. Esto configura el máximo de pods que el Kubelet puede administrar en un nodo a 50. Por defecto, este valor suele ser mayor (por ejemplo, 110 en algunas configuraciones).
-sudo sed -i '/kind: KubeletConfiguration/a \ \maxPods: 50' /var/lib/kubelet/config.yaml
+sudo sed -i '/kind: KubeletConfiguration/a maxPods: 50' /var/lib/kubelet/config.yaml
 
 # Reinicia el servicio Kubelet para aplicar los cambios realizados en el archivo de configuración. Kubelet es el agente que se ejecuta en cada nodo de un clúster de Kubernetes y se asegura de que los contenedores estén corriendo en un Pod.
 sudo systemctl restart kubelet
